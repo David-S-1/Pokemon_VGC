@@ -27,7 +27,7 @@ def get_scarlet_violet():
     for region_name, url in target_region_urls.items():
         url_response = requests.get(url)
         region_data = url_response.json()
-        
+
         print(f'Processing Region {region_data['name']}')
         print('-' * 40)
 
@@ -39,7 +39,7 @@ def get_scarlet_violet():
 
             pokemon_entry_urls[pokemon_name] = entry['pokemon_species']['url']
 
-    
+
 
 
     # get_link = 'https://pokeapi.co/api/v2/pokemon?'
@@ -73,5 +73,6 @@ def get_scarlet_violet():
     #There are no mythicals, filter another way
 
     #3. Turn them all into Pokemon class objects after import
+    #Test Comment for Push
 
 get_scarlet_violet()
