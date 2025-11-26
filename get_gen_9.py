@@ -10,6 +10,7 @@ def get_scarlet_violet():
     pokedex_list = response.json()['results']
 
     target_regions = ['paldea', 'kitakami', 'blueberry']
+
     # Dict [name] -> [region url]
     target_region_urls = {}
 
@@ -28,51 +29,40 @@ def get_scarlet_violet():
         url_response = requests.get(url)
         region_data = url_response.json()
 
-        print(f'Processing Region {region_data['name']}')
-        print('-' * 40)
-
         entries = region_data['pokemon_entries']
 
         for entry in entries:
             pokemon_name = entry['pokemon_species']['name']
             pokemon_names.add(pokemon_name)
 
-            pokemon_entry_urls[pokemon_name] = entry['pokemon_species']['url']
+            pokemon_entry_urls[pokemon_name] = pokemon_entry_urls[
+                pokemon_name] = f"https://pokeapi.co/api/v2/pokemon/{pokemon_name}"
+            # This link gets important stats, abilties, etc. about the Pokemon
 
+    banned_mythicals = ['mew',
+                        'jirachi',
+                        'deoxys',
+                        'phione',
+                        'manaphy',
+                        'darkrai',
+                        'shaymin',
+                        'arceus',
+                        'keldeo',
+                        'meloetta',
+                        'hoopa',
+                        'diancie',
+                        'volcanion',
+                        'magearna',
+                        'zarude',
+                        'pecharunt']
 
-
-
-    # get_link = 'https://pokeapi.co/api/v2/pokemon?'
-
-    # 2. Get all Pokemon and Filter out
-    mythicals = ['Mew',
-    'Jirachi',
-    'Deoxys',
-    'Phione',
-    'Manaphy',
-    'Darkrai',
-    'Shaymin',
-    'Arceus',
-    'Keldeo',
-    'Meloetta',
-    'Diancie',
-    'Hoopa',
-    'Volcanion',
-    'Magearna',
-    'Zarude',
-    'Pecharunt']
-
-    res = 0
-
-    for mythical in mythicals:
+    for mythical in banned_mythicals:
         if mythical in pokemon_names:
-            res += 1
+            pokemon_names.remove(mythical)
 
-    print(res)
-    print(len(mythicals))
-    #There are no mythicals, filter another way
+    #Add Regulations (WIP)
+    #Cache Pokemon Data (Taking a long time to load)
 
     #3. Turn them all into Pokemon class objects after import
     #Test Comment for Push
-
-get_scarlet_violet()
+    return [pokemon_names, pokemon_entry_urls]
