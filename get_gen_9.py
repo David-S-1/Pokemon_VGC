@@ -39,27 +39,39 @@ def get_scarlet_violet():
 
             pokemon_entry_urls[pokemon_name] = entry['pokemon_species']['url']
 
+    
+
 
     # get_link = 'https://pokeapi.co/api/v2/pokemon?'
 
     # 2. Get all Pokemon and Filter out
-    # Mew
-    # Jirachi
-    # Deoxys
-    # Phione
-    # Manaphy
-    # Darkrai
-    # Shaymin
-    # Arceus
-    # Keldeo
-    # Meloetta
-    # Diancie
-    # Hoopa
-    # Volcanion
-    # Magearna
-    # Zarude
-    # Pecharunt
+    mythicals = ['Mew',
+    'Jirachi',
+    'Deoxys',
+    'Phione',
+    'Manaphy',
+    'Darkrai',
+    'Shaymin',
+    'Arceus',
+    'Keldeo',
+    'Meloetta',
+    'Diancie',
+    'Hoopa',
+    'Volcanion',
+    'Magearna',
+    'Zarude',
+    'Pecharunt']
+
+    res = 0
+
+    for mythical in mythicals:
+        if mythical in pokemon_names:
+            res += 1
+
+    print(res)
+    print(len(mythicals))
+    #There are no mythicals, filter another way
 
     #3. Turn them all into Pokemon class objects after import
 
-# get_scarlet_violet()
+get_scarlet_violet()
